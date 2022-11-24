@@ -134,3 +134,14 @@
 
 
 //Task4
+
+// let numbersInKub = [];
+// let randomNumbers = [];
+// for (let i = 0; i < 5; i++ ) {
+//   randomNumbers.push(Math.round( Math.random() * 100 ));
+//   numbersInKub.push(Math.pow(randomNumbers[i], 3))
+//   }
+
+// console.log (randomNumbers)
+// console.log (numbersInKub)
+  
