@@ -17,7 +17,13 @@ const animals = ['monkey', 'dog', 'cat']
 console.log(animals.reverse()[0])
 
 //#2
-// console.log(animals.pop())
+console.log(animals[animals.length - 1])
+
+//#3
+console.log(animals.pop())
+
+//#4 
+console.log(animals.at(-1))
 
 // Task 3 🖥
 // Дан массив:
@@ -31,13 +37,16 @@ const numbers = [5, 43, 63, 23, 90]
 // numbers.length = 0
 
 // #2
-while (0 < numbers.length) {
-	numbers.pop()
-}
+// while (0 < numbers.length) {
+// 	numbers.pop()
+// }
+
+// #3
+console.log(numbers.splice())
 
 //если бы объявление было через let, то можно было бы через "numbers = []"
 
-console.log(numbers)
+// console.log(numbers)
 
 // Task 4 🖥
 // Дан массив:
@@ -51,6 +60,11 @@ students.pop()
 students.push('Borya')
 students.shift()
 students.unshift('Andrey')
+
+//#2
+
+// students[0] = 'Andrey'
+// students[2] = 'Borya'
 
 console.log(students)
 
@@ -75,6 +89,7 @@ const oddNumbers = [1, 3, 5, 7, 9]
 // В полученном массиве попробуйте найти индекс числа 8
 
 const newNumbers = [...evenNumbers, ...oddNumbers]
+// const newNumber2 = evenNumbers.concat(oddNumbers)
 console.log(newNumbers.indexOf(8))
 
 
@@ -152,18 +167,35 @@ const mixedNumbers = [-14, 24, -89, 43, 0, -1, 412, 4]
 
 // Создайте два массива, в один поместите все положительные числа включая 0, в другой все отрицательные. Оба массива затем выведите в консоль.
 
-console.log(findOutPositiveNum(mixedNumbers))
-console.log(findOutNegativeNum(mixedNumbers))
+// console.log(findOutPositiveNum(mixedNumbers))
+// console.log(findOutNegativeNum(mixedNumbers))
 
-function findOutPositiveNum(a) {
-	let negativeNum = a.filter(num => num >= 0)
-	return negativeNum
+let negativeNum = []
+let positiveNum = []
+
+for (let i = 0; i < mixedNumbers.length; i++) {
+
+	if (mixedNumbers[i] < 0) {
+		negativeNum.push(mixedNumbers[i])
+	} else {
+		positiveNum.push(mixedNumbers[i])
+	}
+
 }
 
-function findOutNegativeNum(a) {
-	let negativeNum = a.filter(num => num < 0)
-	return negativeNum
-}
+console.log(negativeNum)
+console.log(positiveNum)
+
+
+// function findOutPositiveNum(a) {
+// 	let negativeNum = a.filter(num => num >= 0)
+// 	return negativeNum
+// }
+
+// function findOutNegativeNum(a) {
+// 	let negativeNum = a.filter(num => num < 0)
+// 	return negativeNum
+// }
 
 //????? в задании, конечно, написано делать через цикл, но я поняла, куда его можно впихнуть ?????
 
