@@ -48,6 +48,59 @@
 // console.log(str);
 
 
-   const mixedNumbers = [-14, -89, -1]
-   const positiveNum = [24, 43, 0, 412, 4]
-   console.log(positiveNum, mixedNumbers);
+
+
+
+
+
+
+// let str = prompt('Введите строку:');
+// function myResult(str) {
+//    for (var i = 0, j = str.length - 1; i < j; i++, j--) {
+//         if(str[i] != str[j])
+//           return false;
+//    }
+//    return true;
+// }
+
+// alert(myResult(str));
+
+
+// const matrix = [
+//     [12, 98, 78, 65, 23],
+//     [54, 76, 98, 43, 65],
+//     [13, 324, 65, 312],
+//     [9092, 22, 45, 90000],
+// ]
+
+// let newArray = matrix.flat();
+// console.log(newArray);
+
+// const initialValue = 0;
+// const sumWithInitial = newArray.reduce(
+//   (accumulator, currentValue) => accumulator + currentValue,
+//   initialValue
+// );
+
+// let sum = sumWithInitial / newArray.length;
+// console.log(sum);
+
+
+// const Numbers = [-14, 24, -89, 43, 0 , -1, 412, 4]
+// const Num = [];
+// Num.push(Numbers[0], Numbers[2], Numbers[5]);
+// console.log(Num); - не решено
+
+
+
+
+
+// function getRandomInt(min, max) {
+// 	return Math.floor(Math.random() * (max - min + 1)) + min;
+// }
+
+
+// let source = [getRandomInt(1, 5)];
+// console.log(source);
+// let injector = [Math.pow(source,3)];
+// console.log(injector);
