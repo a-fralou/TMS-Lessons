@@ -609,6 +609,20 @@ for (let key in student) {
 
 // task 4 
 {
+    const colors = {
+        'ru pum pu ru rum': {
+            red: 'красный',
+            green: 'зеленый',
+            blue: 'синий'
+        },
+    };
+    function findColor() {
+        console.log($this.red);
+    }
+    colors['ru pum pu ru rum'].red;
+    
+}
+{
 const colors = {
     'ru pum pu ru rum': {
         red: 'красный',
@@ -617,7 +631,7 @@ const colors = {
     },
 };
 function findColor() {
-    console.log("${this.red}");
+    return ("${this.red}");
 }
 colors.red();
 }
@@ -974,4 +988,261 @@ let nextArray = [firstNumber, secondNumber, thirdNumber, fourthNumber, fifthNumb
 console.log(randomNumbers);
 console.log(nextArray);
 }
+
+// task 11
+let a = []
+let limitCount = 10
+
+function createRandom(limit) {
+    for (let i = 0; i < limit; i++) {
+        let randomCount = Math.round(Math.random() * 10)
+        a.push(randomCount)
+        // if (a.find(el => el === randomCount)) { // если randomCount есть в массиве собрать новое число
+        //     console.log(Math.round(Math.random() * 10))
+        //     // a.push(randomCount)
+        // } else {
+        //     a.push(randomCount)
+        // }
+    }
+console.log(a)
+    let newArr = Array.from(new Set(a))
+    a = newArr
+    if (a.length === limitCount) {
+        console.log(newArr)
+        return newArr
+    } else {
+        createRandom(limitCount - newArr.length)
+    }
+}
+createRandom(limitCount)
 // 
+
+// Part 6 - Functions (2)
+// task 1
+{
+const fibonacci = [0, 1, 1, 2, 3, 5, 8, 13, 21, 34, 55, 89, 144, 233, 377, 610, 987]
+fibonacci.forEach(element => console.log(element));
+}
+// 
+// task 1 - another decision
+{
+const fibonacci = [0, 1, 1, 2, 3, 5, 8, 13, 21, 34, 55, 89, 144, 233, 377, 610, 987]
+fibonacci.forEach(function(item, arr) {
+  alert( item );
+});
+}
+// {
+// const fibonacci = [0, 1, 1, 2, 3, 5, 8, 13, 21, 34, 55, 89, 144, 233, 377, 610, 987]
+// fibonacci.forEach(callback(value, index, arr) {
+//   alert( index );
+// }
+// );
+// }
+
+// another decision with for 
+{
+const fibonacci = [0, 1, 1, 2, 3, 5, 8, 13, 21, 34, 55, 89, 144, 233, 377, 610, 987]
+for (let i = 0; i < fibonacci.length; i++) {
+    console.log(fibonacci[i])
+}
+}
+
+// another decision with for of
+{
+const fibonacci = [0, 1, 1, 2, 3, 5, 8, 13, 21, 34, 55, 89, 144, 233, 377, 610, 987]
+for (let element of fibonacci)
+console.log(element)
+}
+// 
+// {
+// const fibonacci = [0, 1, 1, 2, 3, 5, 8, 13, 21, 34, 55, 89, 144, 233, 377, 610, 987]  
+// function getNumber(a,b) {
+//     return a + b
+// } 
+// console.log(fibonacci)
+// }
+
+// {
+// const fibonacci = [0, 1, 1, 2, 3, 5, 8, 13, 21, 34, 55, 89, 144, 233, 377, 610, 987]
+// function forEach (element) {
+// return element
+// }
+// console.log(forEach());
+// }
+
+// task 2
+// first decision with for
+{
+const users = ['Darya', 'Masha', 'Denis', 'Vitaliy', 'Polina', 'Anton'] 
+let number = 0;
+for (var i = 0; i < users.length; i++) {
+    number++;
+    console.log("member " + number + ": " + users[i]);
+}
+}
+// {
+// const users = ['Darya', 'Masha', 'Denis', 'Vitaliy', 'Polina', 'Anton']
+// const arr = users.map(x => 'member' + x);
+// // function getString ()
+// console.log(arr);
+// }
+{
+const users = ['Darya', 'Masha', 'Denis', 'Vitaliy', 'Polina', 'Anton'] 
+function getName(callback) {
+    let names = users.forEach(element => console.log(element));
+     // console.log(names)
+    callback(names)
+    }
+getName;
+}
+
+
+{
+const users = ['Darya', 'Masha', 'Denis', 'Vitaliy', 'Polina', 'Anton']
+function getString (names) {
+    console.log('member' + ':' + names)
+}
+function getName(callback) {
+let names = users.forEach(element => console.log(element));
+// console.log(names)
+callback(names)
+}
+}
+{
+
+const users = ['Darya', 'Masha', 'Denis', 'Vitaliy', 'Polina', 'Anton'] 
+for (var i = 0; i < users.length; i++) {
+    let j = 1; j < users.length; j++
+    console.log("member " + j + ":" + users[i]);
+}
+}
+const users = ['Darya', 'Masha', 'Denis', 'Vitaliy', 'Polina', 'Anton']
+function getString (names) {
+    console.log('member' + ':' + names)
+}
+{
+const users = ['Darya', 'Masha', 'Denis', 'Vitaliy', 'Polina', 'Anton']
+// const arr = users.map(x => x + x);
+function getString () {
+console.log(arr('member 1: x'));
+}
+}
+// 
+
+// task 3
+{
+const numbers = [7, -4, 32, -90, 54, 32, -21]
+const result = numbers.filter(number => number > 0);
+console.log(result)
+}
+// 
+
+// 
+// {
+// function getNumbers () {
+// const numbers = [7, -4, 32, -90, 54, 32, -21]
+// if (number > 0)
+//     return number
+// }
+// }
+
+// task 4
+// arrow function
+{
+const fibonacci = [0, 1, 1, 2, 3, 5, 8, 13, 21, 34, 55, 89, 144, 233, 377, 610, 987]
+// const initialValue = 0;
+const getSum = fibonacci.reduce(
+    (accumulator, currentValue) => accumulator + currentValue
+        // initialValue
+        );
+        console.log(getSum);
+}
+
+// function declaration
+{
+const fibonacci = [0, 1, 1, 2, 3, 5, 8, 13, 21, 34, 55, 89, 144, 233, 377, 610, 987]
+let result = fibonacci.reduce(function(sum, elem) {
+    return sum + elem;
+});
+console.log(result);
+}
+
+// task 4 another decision
+{
+const fibonacci = [0, 1, 1, 2, 3, 5, 8, 13, 21, 34, 55, 89, 144, 233, 377, 610, 987]
+function reducer(accumulator, currentValue, index) {
+const returns = accumulator + currentValue;
+return returns;
+}
+fibonacci.reduce(reducer);
+}
+// 
+
+// для себя
+{
+const fibonacci = [0, 1, 1, 2, 3, 5, 8, 13, 21, 34, 55, 89, 144, 233, 377, 610, 987]
+function arraySum(fibonacci) {
+let sum = 0;
+for(let i = 0; i < fibonacci.length; i++) {
+    sum += fibonacci[i];
+    }
+console.log(sum);
+}
+arraySum(fibonacci);
+}
+
+// task 5
+// arrow function
+{
+const numbers = [5, 9, 13, 24, 54, 10, 13, 99, 1, 5]
+const GET_EVEN_NUMBER = numbers.find(element => element % 2 == 0);
+console.log(GET_EVEN_NUMBER)
+}
+// 
+
+// task 5 function declaration
+{
+const numbers = [5, 9, 13, 24, 54, 10, 13, 99, 1, 5]
+function getNumber () {
+    let evenNumber = numbers.find(element => element % 2 == 0);
+    return evenNumber
+}
+console.log(getNumber())
+}
+// {
+//     const numbers = [5, 9, 13, 24, 54, 10, 13, 99, 1, 5]
+//     function getNumber () {
+//         let evenNumber = numbers.find(callback);
+//         return evenNumber
+//     }
+//     function findNumber (callback) {
+//         if (evenNumber % 2 == 0) {
+//             console.log(getNumber)
+//         }
+//     }
+//     console.log(getNumber())
+//     }
+
+// task 6
+{
+    const Student = {
+        salary: 3000,
+        rate: 'A',
+        name: Kate,
+    }
+    function Student () {
+
+    }
+}
+{
+    function Student(salary, rate, name) {
+        this.salary = salary;
+        this.rate = rate;
+        this.name = name;
+    } 
+    let Girl = new Student(3000, 'A', 'Kate');
+    let AnotherGirl = new Student(2000, 'B', 'Bella');
+    let Boy = new Student(1700, 'B', 'Leo');
+    let AnotherBoy = new Student(1900, 'B', 'James');
+    let NextGirl = new Student(3100, 'A', 'Lily');
+}
