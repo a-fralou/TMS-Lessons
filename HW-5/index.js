@@ -1151,74 +1151,26 @@ console.log(result)
 
 // task 3 function declaration ???
 {
-const numbers = [7, -4, 32, -90, 54, 32, -21]
-function getEvenNumber (a,b) {
-    if (a /2 == 0) {
-        return a
+function getPositiveNumber (value) {
+return value > 0;
     }
-    else {
-        return b
-    }
-}
-console.log(getEvenNumber())
+const numbers = [7, -4, 32, -90, 54, 32, -21].filter(getPositiveNumber);
+console.log(numbers);
 }
 
-// ?
+// ???
 {
 const numbers = [7, -4, 32, -90, 54, 32, -21]
-function getEvenNumber (a,b) {
-    if (a / 2 == 0) {
-        return a;
-    }
-    else if (b / 2 == 0) {
-        return b;
-    }
-}
-console.log(getEvenNumber(a,b))
-}
-// 
-
-// ?
-const numbers = [7, -4, 32, -90, 54, 32, -21]
-function getEvenNumber (evenNumber, oddNumber) {
-    let evenNumber;
-    let oddNumber;
-    if (evenNumber / 2 == 0) {
-        return evenNumber;
-    } else {
-        return oddNumber;
-    }
- 
-    console.log(getEvenNumber(evenNumber, oddNumber))
-}
-
-{
-const numbers = [7, -4, 32, -90, 54, 32, -21]
-function even(x){
-   if(Number.isInteger(x) == true){return x % 2 == 0}else{return undefined}
-}
-console.log(numbers());
-}
-
-{
-const numbers = [7, -4, 32, -90, 54, 32, -21]
-function even(x,y){
-   if (x % 2 == 0) {
+let x,y;
+function filter(){
+   if (x > 0) {
    return x;
-} else if (y % 2 == 0) {
+} else {
     return y;
 }
 console.log(numbers(x,y));
 }
 }
-// 
-// {
-// function getNumbers () {
-// const numbers = [7, -4, 32, -90, 54, 32, -21]
-// if (number > 0)
-//     return number
-// }
-// }
 
 // task 4
 // arrow function
