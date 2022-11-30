@@ -1224,7 +1224,7 @@ function getNumber () {
     let evenNumber = numbers.find(element => element % 2 == 0);
     return evenNumber
 }
-console.log(getNumber())
+console.log(getNumber(evenNumber))
 }
 // {
 //     const numbers = [5, 9, 13, 24, 54, 10, 13, 99, 1, 5]
@@ -1266,7 +1266,7 @@ console.log(getNumber())
 
 // task 7
 {
-let disemvowel = (str) => str.replace(/[aeiouy]/gi, '')
+let disemvowel = (str) => str.replace(/[aeiou]/gi, '')
 console.log(disemvowel('This website is for losers LOL!»'));
 }
 // 
