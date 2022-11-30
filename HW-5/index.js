@@ -1264,6 +1264,12 @@ console.log(getNumber())
     let NextGirl = new Student(3100, 'A', 'Lily');
 }
 
+// task 7
+{
+let disemvowel = (str) => str.replace(/[aeiouy]/gi, '')
+console.log(disemvowel('This website is for losers LOL!» станет "Ths wbst s fr lsrs LL!'));
+}
+// 
 
 
 
