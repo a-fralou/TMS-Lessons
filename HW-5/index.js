@@ -1149,7 +1149,7 @@ console.log(result)
 }
 // 
 
-// task 3 function declaration ???
+// task 3 function declaration 
 {
 function getPositiveNumber (value) {
 return value > 0;
@@ -1282,5 +1282,78 @@ console.log(disemvowel('This website is for losers LOL!»'));
 
 
 
+// task 9 
+// для себя
+{
+let str = '1 2 3 4 5';
+const arr = str.split(' ');
+console.log(`Max: ${Math.max(...arr)} Min: ${Math.min(...arr)}, `)
+}
+
+// 
+{
+
+let str = '1 2 3 4 5';
+    function solution(str){
+        let min = Infinity;
+        let max = 0;
+        let number = '';
+        for(let char of str+' '){
+          if(char ==' '){
+            max = max > +number ? max : +number;
+            min = min < number ? min : +number;
+            number = ''
+          }
+          else{
+            number += char;
+          }
+        };
+        return [min, max]
+      }
+}
 
 
+{
+    function highAndLow (numbers)
+    numbers = numbers.split (' ');
+    let arr = [];
+    numbers.forEach(function(elem) {
+        arr.push(Number(elem))
+    })
+    console.log(arr);
+}
+{
+highAndLow('1 2 3 4 5 6 7 8 9  10 45 27 48');
+function highAndLow (numbers) {
+numbers = numbers.split (' ');
+let arr = [];
+numbers.forEach(function(elem) {
+    arr.push(Number(elem))
+})
+console.log(arr);
+}
+}
+
+
+{
+highAndLow('1 2 3 4 5 6 7 8 9  10 45 27 48');
+function highAndLow (numbers) {
+numbers = numbers.split (' ');
+let arr = numbers.map(function(elem) {
+    return Number(elem)
+})
+console.log(arr);
+}
+}
+
+
+{
+highAndLow('1 2 3 4 5 6 7 8 9 10 45 27 48');
+function highAndLow (numbers) {
+    numbers = numbers.split (' ');
+    let arr = numbers.map(elem => Number(elem))
+    let max = Math.max.apply(null, arr);
+    let min = Math.min.apply(null, arr);
+    console.log(max,min);
+    }
+}
