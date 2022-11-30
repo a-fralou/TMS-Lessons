@@ -1290,9 +1290,8 @@ const arr = str.split(' ');
 console.log(`Max: ${Math.max(...arr)} Min: ${Math.min(...arr)}, `)
 }
 
-// 
+// task 9
 {
-
 let str = '1 2 3 4 5';
     function solution(str){
         let min = Infinity;
@@ -1312,16 +1311,7 @@ let str = '1 2 3 4 5';
       }
 }
 
-
-{
-    function highAndLow (numbers)
-    numbers = numbers.split (' ');
-    let arr = [];
-    numbers.forEach(function(elem) {
-        arr.push(Number(elem))
-    })
-    console.log(arr);
-}
+// task 9
 {
 highAndLow('1 2 3 4 5 6 7 8 9  10 45 27 48');
 function highAndLow (numbers) {
@@ -1330,23 +1320,41 @@ let arr = [];
 numbers.forEach(function(elem) {
     arr.push(Number(elem))
 })
-console.log(arr);
+let max = Math.max.apply(null, arr);
+let min = Math.min.apply(null, arr);
+return max + ' ' + min
 }
 }
 
-
+// task 9 
 {
 highAndLow('1 2 3 4 5 6 7 8 9  10 45 27 48');
+function highAndLow (numbers) {
+numbers = numbers.split (' ');
+let arr = [];
+numbers.forEach(function(elem) {
+    arr.push(Number(elem))
+})
+let max = Math.max.apply(null, arr);
+let min = Math.min.apply(null, arr);
+return max + ' ' + min
+}
+}
+// task 9
+{
+highAndLow('1 2 3 4 5 6 7 8 9 10 45 27 48');
 function highAndLow (numbers) {
 numbers = numbers.split (' ');
 let arr = numbers.map(function(elem) {
     return Number(elem)
 })
-console.log(arr);
+let max = Math.max.apply(null, arr);
+let min = Math.min.apply(null, arr);
+return max + ' ' + min
 }
 }
 
-
+// task 9
 {
 highAndLow('1 2 3 4 5 6 7 8 9 10 45 27 48');
 function highAndLow (numbers) {
@@ -1354,6 +1362,26 @@ function highAndLow (numbers) {
     let arr = numbers.map(elem => Number(elem))
     let max = Math.max.apply(null, arr);
     let min = Math.min.apply(null, arr);
-    console.log(max,min);
+    return max + ' ' + min
+    }
+}
+
+// task 9 (arrow function)
+{
+highAndLow('1 2 3 4 5 6 7 8 9 10 45 27 48');
+function highAndLow (numbers) {
+    numbers = numbers.split (' ');
+    let arr = numbers.map(elem => Number(elem))
+    let max = arr[0];
+    let min = arr[0];
+    arr.forEach(elem => {
+        if (max < elem) {
+            max = elem
+        } if (min > elem) {
+            min = elem
+        }
+    }
+        )
+    return max + ' ' + min
     }
 }
