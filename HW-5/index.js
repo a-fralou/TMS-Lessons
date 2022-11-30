@@ -622,6 +622,21 @@ for (let key in student) {
     colors['ru pum pu ru rum'].red;
     
 }
+
+{
+    const colors = {
+        'ru pum pu ru rum': {
+            red: 'красный',
+            green: 'зеленый',
+            blue: 'синий'
+        },
+    findColor() {
+        console.log(this.red);
+    }
+    };
+    colors['ru pum pu ru rum'].red;
+}
+
 {
 const colors = {
     'ru pum pu ru rum': {
@@ -633,7 +648,7 @@ const colors = {
 function findColor() {
     return ("${this.red}");
 }
-colors.red();
+colors['ru pum pu ru rum'].red;
 }
 
 
@@ -971,7 +986,7 @@ console.log(negativeNumbers);
 }
 // 
 
-//  task 11 верно ли?
+//  task 11 
 {
 let randomNumbers = [getRandomInt(7), getRandomInt(6), getRandomInt(5), getRandomInt(4), getRandomInt(3), getRandomInt(2), getRandomInt(1)];
 function getRandomInt(max) {
@@ -1028,13 +1043,13 @@ fibonacci.forEach(element => console.log(element));
 {
 const fibonacci = [0, 1, 1, 2, 3, 5, 8, 13, 21, 34, 55, 89, 144, 233, 377, 610, 987]
 fibonacci.forEach(function(item, arr) {
-  alert( item );
+  console.log( item );
 });
 }
 // {
 // const fibonacci = [0, 1, 1, 2, 3, 5, 8, 13, 21, 34, 55, 89, 144, 233, 377, 610, 987]
 // fibonacci.forEach(callback(value, index, arr) {
-//   alert( index );
+//   alert( value );
 // }
 // );
 // }
@@ -1054,38 +1069,44 @@ for (let element of fibonacci)
 console.log(element)
 }
 // 
-// {
-// const fibonacci = [0, 1, 1, 2, 3, 5, 8, 13, 21, 34, 55, 89, 144, 233, 377, 610, 987]  
-// function getNumber(a,b) {
-//     return a + b
-// } 
-// console.log(fibonacci)
-// }
 
-// {
-// const fibonacci = [0, 1, 1, 2, 3, 5, 8, 13, 21, 34, 55, 89, 144, 233, 377, 610, 987]
-// function forEach (element) {
-// return element
-// }
-// console.log(forEach());
-// }
+// для себя
+{
+const fibonacci = [0, 1, 1, 2, 3, 5, 8, 13, 21, 34, 55, 89, 144, 233, 377, 610, 987]  
+function getNumber(a,b) {
+    return a + b
+} 
+console.log(fibonacci)
+}
+
+// ???
+{
+const fibonacci = [0, 1, 1, 2, 3, 5, 8, 13, 21, 34, 55, 89, 144, 233, 377, 610, 987]
+function forEach (element) {
+return element
+}
+console.log(forEach());
+}
 
 // task 2
-// first decision with for
+// для себя с for
 {
 const users = ['Darya', 'Masha', 'Denis', 'Vitaliy', 'Polina', 'Anton'] 
 let number = 0;
-for (var i = 0; i < users.length; i++) {
+for (let i = 0; i < users.length; i++) {
     number++;
     console.log("member " + number + ": " + users[i]);
 }
 }
-// {
-// const users = ['Darya', 'Masha', 'Denis', 'Vitaliy', 'Polina', 'Anton']
-// const arr = users.map(x => 'member' + x);
-// // function getString ()
-// console.log(arr);
-// }
+
+// ???
+{
+const users = ['Darya', 'Masha', 'Denis', 'Vitaliy', 'Polina', 'Anton']
+const arr = users.map(x => 'member' + x);
+console.log(arr);
+}
+
+// ???
 {
 const users = ['Darya', 'Masha', 'Denis', 'Vitaliy', 'Polina', 'Anton'] 
 function getName(callback) {
@@ -1096,7 +1117,7 @@ function getName(callback) {
 getName;
 }
 
-
+// ???
 {
 const users = ['Darya', 'Masha', 'Denis', 'Vitaliy', 'Polina', 'Anton']
 function getString (names) {
@@ -1107,19 +1128,10 @@ let names = users.forEach(element => console.log(element));
 // console.log(names)
 callback(names)
 }
+console.log(getName(element))
 }
-{
 
-const users = ['Darya', 'Masha', 'Denis', 'Vitaliy', 'Polina', 'Anton'] 
-for (var i = 0; i < users.length; i++) {
-    let j = 1; j < users.length; j++
-    console.log("member " + j + ":" + users[i]);
-}
-}
-const users = ['Darya', 'Masha', 'Denis', 'Vitaliy', 'Polina', 'Anton']
-function getString (names) {
-    console.log('member' + ':' + names)
-}
+// ???
 {
 const users = ['Darya', 'Masha', 'Denis', 'Vitaliy', 'Polina', 'Anton']
 // const arr = users.map(x => x + x);
@@ -1129,13 +1141,18 @@ console.log(arr('member 1: x'));
 }
 // 
 
-// task 3
+// task 3 arrow function
 {
 const numbers = [7, -4, 32, -90, 54, 32, -21]
 const result = numbers.filter(number => number > 0);
 console.log(result)
 }
 // 
+
+// task 3 function declaration ???
+{
+
+}
 
 // 
 // {
@@ -1246,3 +1263,9 @@ console.log(getNumber())
     let AnotherBoy = new Student(1900, 'B', 'James');
     let NextGirl = new Student(3100, 'A', 'Lily');
 }
+
+
+
+
+
+
