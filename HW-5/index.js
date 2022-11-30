@@ -1267,7 +1267,7 @@ console.log(getNumber())
 // task 7
 {
 let disemvowel = (str) => str.replace(/[aeiouy]/gi, '')
-console.log(disemvowel('This website is for losers LOL!» станет "Ths wbst s fr lsrs LL!'));
+console.log(disemvowel('This website is for losers LOL!»'));
 }
 // 
 
