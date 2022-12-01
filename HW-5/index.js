@@ -731,7 +731,7 @@ if (login == "Expecto Patronum") {
 }
 // 
 
-// task 7- правильно ли поняла суть?
+// task 7- правильно ли поняла?
 {
 let goalCount = 9;
 let count = "2:5";
@@ -1033,71 +1033,22 @@ createRandom(limitCount)
 // 
 
 // Part 6 - Functions (2)
-// task 1
+// task 1 (arrow function)
 {
 const fibonacci = [0, 1, 1, 2, 3, 5, 8, 13, 21, 34, 55, 89, 144, 233, 377, 610, 987]
 fibonacci.forEach(element => console.log(element));
 }
 // 
-// task 1 - another decision
+
+// task 1 (function declaration)
 {
 const fibonacci = [0, 1, 1, 2, 3, 5, 8, 13, 21, 34, 55, 89, 144, 233, 377, 610, 987]
-fibonacci.forEach(function(item, arr) {
+fibonacci.forEach(function(item) {
   console.log( item );
 });
 }
-// {
-// const fibonacci = [0, 1, 1, 2, 3, 5, 8, 13, 21, 34, 55, 89, 144, 233, 377, 610, 987]
-// fibonacci.forEach(callback(value, index, arr) {
-//   alert( value );
-// }
-// );
-// }
-
-// another decision with for 
-{
-const fibonacci = [0, 1, 1, 2, 3, 5, 8, 13, 21, 34, 55, 89, 144, 233, 377, 610, 987]
-for (let i = 0; i < fibonacci.length; i++) {
-    console.log(fibonacci[i])
-}
-}
-
-// another decision with for of
-{
-const fibonacci = [0, 1, 1, 2, 3, 5, 8, 13, 21, 34, 55, 89, 144, 233, 377, 610, 987]
-for (let element of fibonacci)
-console.log(element)
-}
-// 
-
-// для себя
-{
-const fibonacci = [0, 1, 1, 2, 3, 5, 8, 13, 21, 34, 55, 89, 144, 233, 377, 610, 987]  
-function getNumber(a,b) {
-    return a + b
-} 
-console.log(fibonacci)
-}
-
-// ???
-{
-const fibonacci = [0, 1, 1, 2, 3, 5, 8, 13, 21, 34, 55, 89, 144, 233, 377, 610, 987]
-function forEach (element) {
-return element
-}
-console.log(forEach());
-}
 
 // task 2
-// для себя с for
-{
-const users = ['Darya', 'Masha', 'Denis', 'Vitaliy', 'Polina', 'Anton'] 
-let number = 0;
-for (let i = 0; i < users.length; i++) {
-    number++;
-    console.log("member " + number + ": " + users[i]);
-}
-}
 
 // ???
 {
@@ -1158,33 +1109,16 @@ const numbers = [7, -4, 32, -90, 54, 32, -21].filter(getPositiveNumber);
 console.log(numbers);
 }
 
-// ???
-{
-const numbers = [7, -4, 32, -90, 54, 32, -21]
-let x,y;
-function filter(){
-   if (x > 0) {
-   return x;
-} else {
-    return y;
-}
-console.log(numbers(x,y));
-}
-}
-
-// task 4
-// arrow function
+//  task 4 (arrow function)
 {
 const fibonacci = [0, 1, 1, 2, 3, 5, 8, 13, 21, 34, 55, 89, 144, 233, 377, 610, 987]
-// const initialValue = 0;
 const getSum = fibonacci.reduce(
     (accumulator, currentValue) => accumulator + currentValue
-        // initialValue
         );
         console.log(getSum);
 }
 
-// function declaration
+//  task 4 (function declaration)
 {
 const fibonacci = [0, 1, 1, 2, 3, 5, 8, 13, 21, 34, 55, 89, 144, 233, 377, 610, 987]
 let result = fibonacci.reduce(function(sum, elem) {
@@ -1204,19 +1138,6 @@ fibonacci.reduce(reducer);
 }
 // 
 
-// для себя
-{
-const fibonacci = [0, 1, 1, 2, 3, 5, 8, 13, 21, 34, 55, 89, 144, 233, 377, 610, 987]
-function arraySum(fibonacci) {
-let sum = 0;
-for(let i = 0; i < fibonacci.length; i++) {
-    sum += fibonacci[i];
-    }
-console.log(sum);
-}
-arraySum(fibonacci);
-}
-
 // task 5
 // arrow function
 {
@@ -1235,85 +1156,63 @@ function getNumber () {
 }
 console.log(getNumber(evenNumber))
 }
-// {
-//     const numbers = [5, 9, 13, 24, 54, 10, 13, 99, 1, 5]
-//     function getNumber () {
-//         let evenNumber = numbers.find(callback);
-//         return evenNumber
-//     }
-//     function findNumber (callback) {
-//         if (evenNumber % 2 == 0) {
-//             console.log(getNumber)
-//         }
-//     }
-//     console.log(getNumber())
-//     }
 
-// task 6
+// task 1 (Advanced level)
 {
     const Student = {
         salary: 3000,
         rate: 'A',
         name: Kate,
     }
-    function Student () {
-
-    }
-}
-{
     function Student(salary, rate, name) {
         this.salary = salary;
         this.rate = rate;
         this.name = name;
+        this.receive = () => {
+            switch (this.rate) {
+                case 'A':
+                    return this.salary * 12;
+                    break;
+                case 'B':
+                    return this.salary * 9;
+                    break;
+                case 'C':
+                    return this.salary * 6;
+                    break;
+                case 'D':
+                    return 0;
+                    break;
+            }
+        }
     } 
-    let Girl = new Student(3000, 'A', 'Kate');
-    let AnotherGirl = new Student(2000, 'B', 'Bella');
-    let Boy = new Student(1700, 'B', 'Leo');
-    let AnotherBoy = new Student(1900, 'B', 'James');
-    let NextGirl = new Student(3100, 'A', 'Lily');
+    let kate = new Student(3000, 'A', 'Kate');
+    let bella = new Student(2000, 'B', 'Bella');
+    let leo = new Student(1700, 'B', 'Leo');
+    let james = new Student(1900, 'B', 'James');
+    let lily = new Student(3100, 'A', 'Lily');
+    const studentsArr = [kate, bella, leo, james, lily];
+    const totalReceive = studentsArr.reduce ((sum, elem) => {
+    return sum + elem.receive();
+    }, 0);
 }
 
-// task 7
+// task 2
 {
 let disemvowel = (str) => str.replace(/[aeiou]/gi, '')
 console.log(disemvowel('This website is for losers LOL!»'));
 }
 // 
 
-
-
-// task 9 
-// для себя
+// task 4 
 {
 let str = '1 2 3 4 5';
 const arr = str.split(' ');
 console.log(`Max: ${Math.max(...arr)} Min: ${Math.min(...arr)}, `)
 }
 
-// task 9
+// task 4
 {
-let str = '1 2 3 4 5';
-    function solution(str){
-        let min = Infinity;
-        let max = 0;
-        let number = '';
-        for(let char of str+' '){
-          if(char ==' '){
-            max = max > +number ? max : +number;
-            min = min < number ? min : +number;
-            number = ''
-          }
-          else{
-            number += char;
-          }
-        };
-        return [min, max]
-      }
-}
-
-// task 9
-{
-highAndLow('1 2 3 4 5 6 7 8 9  10 45 27 48');
+highAndLow('1 2 3 4 5');
 function highAndLow (numbers) {
 numbers = numbers.split (' ');
 let arr = [];
@@ -1326,23 +1225,9 @@ return max + ' ' + min
 }
 }
 
-// task 9 
+// task 4 (function declaration)
 {
-highAndLow('1 2 3 4 5 6 7 8 9  10 45 27 48');
-function highAndLow (numbers) {
-numbers = numbers.split (' ');
-let arr = [];
-numbers.forEach(function(elem) {
-    arr.push(Number(elem))
-})
-let max = Math.max.apply(null, arr);
-let min = Math.min.apply(null, arr);
-return max + ' ' + min
-}
-}
-// task 9
-{
-highAndLow('1 2 3 4 5 6 7 8 9 10 45 27 48');
+highAndLow('1 2 3 4 5');
 function highAndLow (numbers) {
 numbers = numbers.split (' ');
 let arr = numbers.map(function(elem) {
@@ -1354,9 +1239,9 @@ return max + ' ' + min
 }
 }
 
-// task 9
+// task 4 (arrow function)
 {
-highAndLow('1 2 3 4 5 6 7 8 9 10 45 27 48');
+highAndLow('1 2 3 4 5');
 function highAndLow (numbers) {
     numbers = numbers.split (' ');
     let arr = numbers.map(elem => Number(elem))
@@ -1366,9 +1251,9 @@ function highAndLow (numbers) {
     }
 }
 
-// task 9 (arrow function)
+// task 4 (arrow function)
 {
-highAndLow('1 2 3 4 5 6 7 8 9 10 45 27 48');
+highAndLow('1 2 3 4 5');
 function highAndLow (numbers) {
     numbers = numbers.split (' ');
     let arr = numbers.map(elem => Number(elem))
