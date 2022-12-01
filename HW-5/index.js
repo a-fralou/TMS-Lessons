@@ -1048,47 +1048,33 @@ fibonacci.forEach(function(item) {
 });
 }
 
-// task 2
-
-// ???
+// task 2 (arrow function)
 {
 const users = ['Darya', 'Masha', 'Denis', 'Vitaliy', 'Polina', 'Anton']
-const arr = users.map(x => 'member' + x);
+const arr = users.map((x,y) => 'member ' + (y + 1) + ": "  + x);
 console.log(arr);
 }
 
-// ???
+// task 2 (function declaration)
 {
 const users = ['Darya', 'Masha', 'Denis', 'Vitaliy', 'Polina', 'Anton'] 
-function getName(callback) {
-    let names = users.forEach(element => console.log(element));
-     // console.log(names)
-    callback(names)
-    }
-getName;
+users.map(function(x,y) {
+    const arr = 'member ' + (y + 1) + ": "  + x;
+    return arr;
+});
 }
 
-// ???
+// task 2 (function declaration)
 {
-const users = ['Darya', 'Masha', 'Denis', 'Vitaliy', 'Polina', 'Anton']
-function getString (names) {
-    console.log('member' + ':' + names)
+const users = ['Darya', 'Masha', 'Denis', 'Vitaliy', 'Polina', 'Anton'] 
+function getString (x,y) {
+    console.log(x,y)
 }
-function getName(callback) {
-let names = users.forEach(element => console.log(element));
-// console.log(names)
-callback(names)
-}
-console.log(getName(element))
-}
-
-// ???
-{
-const users = ['Darya', 'Masha', 'Denis', 'Vitaliy', 'Polina', 'Anton']
-// const arr = users.map(x => x + x);
-function getString () {
-console.log(arr('member 1: x'));
-}
+function getNewString (elem1, elem2) {
+    const arr = 'member ' + (elem2 + 1) + ": "  + elem1;
+    return arr;
+};
+arr;
 }
 // 
 
