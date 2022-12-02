@@ -1145,41 +1145,37 @@ console.log(getNumber(evenNumber))
 
 // task 1 (Advanced level)
 {
-    const Student = {
-        salary: 3000,
-        rate: 'A',
-        name: Kate,
-    }
-    function Student(salary, rate, name) {
-        this.salary = salary;
-        this.rate = rate;
-        this.name = name;
-        this.receive = () => {
-            switch (this.rate) {
-                case 'A':
-                    return this.salary * 12;
-                    break;
-                case 'B':
-                    return this.salary * 9;
-                    break;
-                case 'C':
-                    return this.salary * 6;
-                    break;
-                case 'D':
-                    return 0;
-                    break;
-            }
+function Student(salary, rate, name) {
+    this.salary = salary;
+    this.rate = rate;
+    this.name = name;
+    this.receive = () => {
+        switch (this.rate) {
+            case 'A':
+                return this.salary * 12;
+                break;
+            case 'B':
+                return this.salary * 9;
+                break;
+            case 'C':
+                return this.salary * 6;
+                break;
+            case 'D':
+                return 0;
+                break;
         }
-    } 
-    let kate = new Student(3000, 'A', 'Kate');
-    let bella = new Student(2000, 'B', 'Bella');
-    let leo = new Student(1700, 'B', 'Leo');
-    let james = new Student(1900, 'B', 'James');
-    let lily = new Student(3100, 'A', 'Lily');
-    const studentsArr = [kate, bella, leo, james, lily];
-    const totalReceive = studentsArr.reduce ((sum, elem) => {
-    return sum + elem.receive();
-    }, 0);
+    }
+} 
+let kate = new Student(3000, 'A', 'Kate');
+let bella = new Student(2000, 'B', 'Bella');
+let leo = new Student(1700, 'B', 'Leo');
+let james = new Student(1900, 'B', 'James');
+let lily = new Student(3100, 'A', 'Lily');
+const studentsArr = [kate, bella, leo, james, lily];
+const totalReceive = studentsArr.reduce ((sum, elem) => {
+return sum + elem.receive();
+}, 0);
+console.log(totalReceive);
 }
 
 // task 2
@@ -1188,6 +1184,17 @@ let disemvowel = (str) => str.replace(/[aeiou]/gi, '')
 console.log(disemvowel('This website is for losers LOL!»'));
 }
 // 
+
+// task 3
+{
+const accum = str => str
+.split('')
+.map((x, i) => (x = x.toLowerCase().repeat(i + 1)) && x.charAt(0).toUpperCase() + x.slice(1))
+.join('-')
+console.log(accum("abcd"));
+console.log(accum("RqaEzty"));
+console.log(accum("cwAt"));
+}
 
 // task 4 
 {
@@ -1255,4 +1262,14 @@ function highAndLow (numbers) {
         )
     return max + ' ' + min
     }
+}
+// 
+
+// task 5 
+{
+function isIsogram (str) {
+    return str.length == new Set(str.toLowerCase()).size;
+}
+console.log(isIsogram("Dermatoglyphics"));
+console.log(isIsogram("aba"));
 }
