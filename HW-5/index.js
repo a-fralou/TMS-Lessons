@@ -1273,3 +1273,77 @@ function isIsogram (str) {
 console.log(isIsogram("Dermatoglyphics"));
 console.log(isIsogram("aba"));
 }
+
+// task 5 регулярное выражение
+{
+function isIsogram (str) {
+    return !/(\w).*\1/i.test(str);
+}
+console.log(isIsogram("Dermatoglyphics"));
+console.log(isIsogram("aba"));
+}
+// 
+
+//  task 6 
+{
+  let firstA = 'A';
+  let firstB = 'B';
+  let firstC = 'C';
+  let new_A = firstA.charCodeAt(0);
+  new_A = new_A.toString();
+  let new_B = firstB.charCodeAt(0);
+  new_B = new_B.toString();
+  let new_C = firstC.charCodeAt(0);
+  new_C = new_C.toString();
+  let total1 = new_A + new_B + new_C;
+  typeof total1;
+  console.log(total1);
+  let total2 = total1.replace(/7/, '1');
+  function getDifference (total1, total2){
+    return Math.abs(total1 - total2);
+  }
+console.log(getDifference(total1,total2))
+}
+
+// task 6
+{
+let firstA = 'A';
+let firstB = 'B';
+let firstC = 'C';
+let new_A = firstA.replace(/A/i, '65');
+let new_B = firstB.replace(/B/i, '66');
+let new_C = firstC.replace(/C/i, '67');
+let total1 = new_A + new_B + new_C;
+console.log(total1);
+let total2 = total1.replace(/7/, '1');
+console.log(total2);
+function getDifference (total1, total2){
+    return Math.abs(total1 - total2);
+  }
+console.log(getDifference(total1,total2))
+}
+// function changeValue () {
+// let new_A = firstA.replace(/A/i, '65');
+// return new_A
+// }
+// console.log(changeValue())
+// function changeValue () {
+// let new_B = firstB.replace(/B/i, '66');
+// return new_B
+// }
+// console.log(changeValue())
+// function changeValue () {
+// let new_C = firstC.replace(/C/i, '67');
+// return new_C
+// }
+// console.log(changeValue())
+// }
+
+// task 7
+{
+let str = "din";
+// "din" => "((("
+// "recede" => "()()()"
+// "Success" => ")())())"
+// "(( @" => "))(("
+}
