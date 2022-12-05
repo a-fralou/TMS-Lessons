@@ -1342,8 +1342,36 @@ console.log(getDifference(total1,total2))
 // task 7
 {
 let str = "din";
-// "din" => "((("
-// "recede" => "()()()"
-// "Success" => ")())())"
-// "(( @" => "))(("
+function findDublicate (word) {
+    word = word.toLowerCase().split("");
+    let key = {}, result = "";
+    for (let i = 0; i < word.length; i++) {
+        if (key[word[i]] == undefined) key[word[i]] = 1;
+        else key[word[i]]++
+}
+for (let k = 0; k < word.length; k++) {
+    if (key[word[k]] == 1) result += "(";
+    else result += ")";
+}
+return result
+}
+findDublicate("din");
+findDublicate("recede");
+findDublicate("Success");
+findDublicate("(( @");
+}   
+// 
+
+// another decision
+{
+function findDuplicate(word) {
+    return word
+    .toLowerCase()
+    .split('')
+    .map (function (a, w) {
+        return w.indexOf(a) == w.lastIndexOf(a) ? '(' : ')'
+    })
+    .join('')
+}
+findDublicate("Success");
 }
