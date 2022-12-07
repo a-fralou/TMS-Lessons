@@ -1,0 +1,23 @@
+{
+  "name": "tms-lessons",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "parcel serve Todo-list/index.html --public-url / --dist-dir dist",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/a-fralou/TMS-Lessons.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/a-fralou/TMS-Lessons/issues"
+  },
+  "homepage": "https://github.com/a-fralou/TMS-Lessons#readme",
+  "dependencies": {
+    "parcel": "^2.8.0"
+  }
+}
