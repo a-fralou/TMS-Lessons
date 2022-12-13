@@ -1,0 +1,19 @@
+{
+  "name": "todo",
+  "version": "1.0.0",
+  "description": "",
+  "source": "index.html",
+  "scripts": {
+    "start": "parcel index.html",
+    "build": "parcel build"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "parcel": "^2.8.1",
+    "uuid": "^9.0.0"
+  },
+  "devDependencies": {
+    "@parcel/transformer-sass": "2.8.1"
+  }
+}
