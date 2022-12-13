@@ -104,6 +104,7 @@
 
 // string()
 
+//решение:
 // function disemvowel(str) {
 //     str =str.replace(/[aeiou]/gi, '');   //что это значит
 //   return str;
@@ -131,12 +132,12 @@
 
 // console.log(dubleLetter())
 
-let accum = str => str
-    .split('')
-    .map((ch, i) => (ch = ch.toLowerCase().repeat(i + 1)) && ch.charAt(0).toUpperCase() + ch.slice(1))
-    .join('-')
+// let accum = str => str
+//     .split('')
+//     .map((ch, i) => (ch = ch.toLowerCase().repeat(i + 1)) && ch.charAt(0).toUpperCase() + ch.slice(1))
+//     .join('-')
 
-    console.log(accum("abcd"));    // "A-Bb-Ccc-Dddd"
-    console.log(accum("RqaEzty")); // "R-Qq-Aaa-Eeee-Zzzzz-Tttttt-Yyyyyyy"
-    console.log(accum("cwAt"));
+//     console.log(accum("abcd"));    // "A-Bb-Ccc-Dddd"
+//     console.log(accum("RqaEzty")); // "R-Qq-Aaa-Eeee-Zzzzz-Tttttt-Yyyyyyy"
+//     console.log(accum("cwAt"));
 
