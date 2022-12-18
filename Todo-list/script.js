@@ -1,6 +1,8 @@
-let btnDelete = document.getElementById('btn-delete');
+import { v4 as uuidv4 } from "uuid";
+const getRandomId = () => uuidv4();
+
+let btnDeleteAll = document.getElementById('btn-delete');
 let btnDeleteLast = document.getElementById('btn-deleteLast');
-let btnDeletInCheckbox = document.getElementById('btn-deleteInCheckbox');
 
 let btnAdd = document.getElementById('btn-add');
 
@@ -11,42 +13,89 @@ let todo = document.getElementById('todo-list')
 
 let inputAdd = document.getElementById('input-add');
 
+let getCheckAll = document.getElementById('check-all')
+let getCompleted = document.querySelector('check-complted')
 
 
-let todoList =[];                                       //Записываем каждый новый ввод todo
+
+let todoList = [];                                       //Записываем каждый новый ввод todo
+let tempTodos = [];
+
+let checkAll = 0;
+let completed = 0;
+
+if(localStorage.getItem('todoList')){
+  todoList = JSON.parse(localStorage.getItem('todoList'));
+  displayMessages()
+}
 
 btnAdd.addEventListener('click', function(){
+  if (inputAdd.value.trim() === ''){
+    alert('Поле не может быть пустым!')
+    inputAdd.value ='';
+    return
+  }
     let newTodo={                                     //Содержит данные нашего последнего ввода todo
         todo:inputAdd.value,
+        id:getRandomId(),
         checked:false,
-        important:false,
+        date:'Mon Dec 05 2022,'
+
     };
+    inputAdd.value='';                           //После ввода стирается из input
     todoList.push(newTodo);
-    displayMeassges ()
+
+    localStorage.setItem('todoList', JSON.stringify(todoList))        //Сохранение после обновления
+    displayMessages ()
 })
 
-function displayMeassges (){
-    let displayMessage = '';
-    todoList.forEach(function(item, i){
+btnDeleteAll.addEventListener('click', function(){
+  todoList = [];
+  localStorage.clear();
+  todo.innerHTML = '';
+  getCheckAll.innerText = '0'; 
+  
+})
+
+btnDeleteLast.addEventListener('click', function(){
+    let tempTodos = [...todoList];
+    const removeItem = tempTodos.pop();
+    console.log(removeItem.id);
+    todoList = todoList.filter((el) => el.id !== removeItem.id);
+    localStorage.setItem('todoList', JSON.stringify(todoList)) 
+    displayMessages(todoList);
+    
+    return;
+})
+
+
+const removeTodo = (id) =>{
+  todoList = todoList.filter((el) => el.id !==id)
+
+  localStorage.setItem('todoList', JSON.stringify(todoList)) 
+  displayMessages (todoList)
+}
+
+
+
+function displayMessages (){
+  console.log(todoList)
+    todo.innerHTML = '';
+    let displayMessage ='' ;
+    
+    todoList.forEach(function(item, id){
         displayMessage += `
         <li
         class="list-group-item d-flex justify-content-between align-items-center"
       >
         <div class="item-todo">
-          <input
-            type="checkbox"
-            id="item_${i}"
-          >
-          <label
-            id="item_${i}" 
-           
-            >${item.todo}
-            </label
+          <input type="checkbox" id="${id}" ${item.checked ? 'checked': ''}>
+          <label for="${id}">${item.todo}</label
           >
         </div>
 
         <div class="d-flex flex-column">
-          <button id="btn-deleteInCheckbox" type="button" class="btn btn-danger btn-sm mb-2">
+          <button data-id="${id}" type="button" class="btn btn-danger btn-sm mb-2">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               fill="#ffffff"
@@ -64,5 +113,34 @@ function displayMeassges (){
       </li>
         `;
         todo.innerHTML = displayMessage;
+        todo
+          .querySelector(`button[data-id="${id}"]`)
+          .addEventListener("click", ()=> {removeTodo(item.id)})       //-удаление элемента при нажатии на иконку внутри input
+
+          .querySelector(`input[for="${id}"]`)
+          .addEventListener("click", ()=> {                             //- check элемента рпи нажатии на checkbox и занесение его в localStorage
+          item.checked = !item.checked
+          })
+
+          localStorage.setItem('todoList', JSON.stringify(todoList))  
     })
+
+    checkAll = todoList.length;
+    getCheckAll.innerText = checkAll; 
 }
+
+
+// todo.addEventListener('change', function(event){                     //при изменении чего-то внутри запускается функция
+//   let idInput = event.target.getAttribute('id');                    //элеммент который вызвал событие (когда мы поставили галочку) - берем артибут
+//   let forLabel = todo.querySelector('[for='+ idInput +']');          //ищем селектор с помощью атрибута id
+//   let valueLabel = forLabel.innerHTML; 
+//   console.log(valueLabel)                              //выводим значение label value
+
+   
+//   todoList.forEach(function(item){
+//     if(item.todo === valueLabel){
+//       item.checked = !item.checked;
+//       localStorage.setItem('todoList', JSON.stringify(todoList))  
+//     }
+//   })
+// })

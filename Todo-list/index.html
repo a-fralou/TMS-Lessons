@@ -16,15 +16,17 @@
         .container {
           max-width: 1024px;
         }
-        .important{
-            font-weight: bold;
-            color:red;
-        }
         #todo-list{
-            border:2px solid #0d6efd;
+            border-top:1px solid #6c757d;
+            border-bottom: none;
             margin-top: 10px;
-            padding: 10px;
             border-radius:10px;
+            padding-left: 0px;
+        }
+        .list-group-item{
+          border: 1px solid #6c757d;
+          border-top:none;
+          padding: 10px;
         }
       </style>
     </head>
@@ -57,9 +59,9 @@
   
           <div class="row mt-2">
             <div class="col-3 d-flex align-items-center">
-              <p class="mb-0">All <span class="badge bg-secondary">3</span></p>
+              <p class="mb-0">All <span class="badge bg-secondary" id="check-all">0</span></p>
               <p class="ms-3 mb-0">
-                Completed <span class="badge bg-secondary">4</span>
+                Completed <span class="badge bg-secondary" id="check-completed">0</span>
               </p>
             </div>
             <div class="col-3">
@@ -84,7 +86,8 @@
         </div>
   
         <ul id="todo-list">
-         </ul>
-    <script src="./script.js"></script>
+        
+        </ul>
+    <script type="module" src="./script.js"></script>
 </body>
 </html>
