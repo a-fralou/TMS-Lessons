@@ -1,3 +1,4 @@
+import moment from "moment";
 import { TODOS_CONST } from "./constants";
 import { setToDosInLocalStorage } from "./localStorageAPI";
 import { getRandomId as randomId } from "./utils";
@@ -13,9 +14,11 @@ const btnDeleteAll = document.getElementById("btn-delete");
 const btnDeleteLast = document.getElementById("btn-delete-last");
 const btnCompleted = document.getElementById("btn-completed");
 const btnShowAll = document.getElementById("btn-show-all");
+const inputSearch = document.getElementById("input-search");
 
 let todos = [];
 let tempTodos = [];
+let filterTodos = [];
 let allTodos = 0;
 let completedTodos = 0;
 let isShowCompleted = false;
@@ -48,6 +51,42 @@ const removeTodo = (id) => {
   renderList(todos);
 };
 
+const changeTodo = (id) => {
+  todos = todos.map((el) => {
+    if (el.id === id) {
+      return {
+        ...el,
+        isDone: !el.isDone,
+      };
+    }
+
+    return el;
+  });
+
+  setToDosInLocalStorage(todos);
+  renderList(todos);
+};
+
+inputSearch.addEventListener("input", (e) => {
+  if (isShowCompleted) {
+    filterTodos = tempTodos.filter((el) =>
+      el.title.toLowerCase().includes(e.target.value.toLowerCase())
+    );
+    if (e.target.value === "") {
+      filterTodos = tempTodos;
+    }
+  } else {
+    filterTodos = todos.filter((el) =>
+      el.title.toLowerCase().includes(e.target.value.toLowerCase())
+    );
+    if (e.target.value === "") {
+      filterTodos = todos;
+    }
+  }
+
+  renderList(filterTodos);
+});
+
 btnCompleted.addEventListener("click", setShowCompleted);
 
 btnShowAll.addEventListener("click", isShowAll);
@@ -59,7 +98,7 @@ btnAdd.addEventListener("click", function () {
     return;
   }
 
-  const dateTodo = new Date().toLocaleString(); // Mon Dec 05 2022
+  const dateTodo = moment().format("h:mm, DD MMM"); // Mon Dec 05 2022
 
   todos.push({
     title: inputAdd.value,
@@ -117,9 +156,14 @@ function renderList(data) {
   if (data.length) {
     data.forEach((todo) => {
       todosWrapper.insertAdjacentHTML("afterbegin", createToDoItem(todo));
+
       todosWrapper
         .querySelector(`button[data-id="${todo.id}"]`)
         .addEventListener("click", () => removeTodo(todo.id));
+
+      todosWrapper
+        .querySelector(`input[id="${todo.id}"]`)
+        .addEventListener("change", () => changeTodo(todo.id));
     });
   }
 }

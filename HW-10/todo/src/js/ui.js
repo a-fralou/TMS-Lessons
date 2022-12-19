@@ -1,6 +1,6 @@
 export const createToDoItem = ({ title, id, isDone, date }) => {
   return `<li
-  class="list-group-item d-flex justify-content-between align-items-center"
+  class="list-group-item d-flex justify-content-between align-items-center" id="test"
 >
   <div class="item-todo">
     <input

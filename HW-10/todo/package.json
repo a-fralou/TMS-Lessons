@@ -10,10 +10,11 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "parcel": "^2.8.1",
+    "moment": "^2.29.4",
+    "parcel": "^2.8.2",
     "uuid": "^9.0.0"
   },
   "devDependencies": {
-    "@parcel/transformer-sass": "2.8.1"
+    "@parcel/transformer-sass": "^2.8.2"
   }
 }
