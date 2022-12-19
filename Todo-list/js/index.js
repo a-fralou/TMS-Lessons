@@ -61,6 +61,7 @@ function addTodoItem() {
 		isDone: false,
 		title: inputAdd.value,
 		date: todoDate,
+		id: todos.length,
 	};
 
 	todos.push(paramsOfTodo);
@@ -91,28 +92,36 @@ function createTodo(arr) {
 	createTodoItem(arr);
 };
 
-//! пока не работает
+// удаляется todo, ка котором был нажат крестик
 const removeTodo = (id) => {
-		todos = todos.filter((el) => el.id !== id);
+	todos = todos.filter((el) => el.id !== id);
 
-		setTodoInLocalStorage()
-		createTodo(todos);
-		displayAllTodos();
-		displayCompletedTodos();
+	setTodoInLocalStorage();
+	createTodo(todos);
+	displayAllTodos();
+	displayCompletedTodos();
 };
+
+//! таким образом не работает
+// const completeTodo = (state) => {
+// 	state = !state;
+// 	setTodoInLocalStorage();
+// 	displayAllTodos();
+// 	displayCompletedTodos();
+// };
 //!
 
-const createTodoItem = (el) => {
-	if (el != []) {
-		el.forEach(function (el, i) {
+const createTodoItem = (arr) => {
+	if (arr.length != 0) {
+		arr.forEach(function (el) {
 			let newTodoItem = `
-			<li class="list-group-item d-flex align-items-center justify-content-between" id='todoItem-${i}'>
+			<li class="list-group-item d-flex align-items-center justify-content-between" id='todoItem-${el.id}'>
 		
-				<input type="checkbox" class="form-check-input" class="btn btn-outline-dark mb-2" id='${i}' data-checkbox-id="${i}" ${el.isDone ? "checked" : ''}></input>
-				<label class="form-check-label" for='${i}'>${el.title}</label>
+				<input type="checkbox" class="form-check-input" class="btn btn-outline-dark mb-2" id='${el.id}' data-idChecked="${el.id}" ${el.isDone ? "checked" : ''}></input>
+				<label class="form-check-label" id="todoLabel-${el.id}" for='${el.id}'>${el.title}</label>
 		
 				<div class="d-flex flex-column align-items-end">
-					<button type="button" id='btn-deleteThisTodo' data-delette-id="${i}" class="btn btn-outline-dark mb-2 " style=" width: fit-content">
+					<button type="button" id='btn-deleteThisTodo' data-idDelete="${el.id}" class="btn btn-outline-dark mb-2 " style=" width: fit-content">
 						<img src="https://cdn-icons-png.flaticon.com/512/17/17047.png" jsaction="load:XAeZkd;" jsname="HiaYvf"
 									class="n3VNCb KAlRDb d-flex align-items-center mx-auto" alt="Крестик – Бесплатные иконки: знаки"
 									data-noaft="1" style="width: 16px; height: 16px;">
@@ -125,20 +134,35 @@ const createTodoItem = (el) => {
 
 			todoList.insertAdjacentHTML('beforeend', newTodoItem);
 
-			// const btnDeleteThisTodoItem = document.querySelector(`button[data-delete-id="${i}"]`);
-	
-			// btnDeleteThisTodoItem.addEventListener('click', removeTodo(i));
+			const btnDeleteThisTodoItem = todoList.querySelector(`button[data-idDelete="${el.id}"]`);
+			btnDeleteThisTodoItem.addEventListener('click', () => removeTodo(el.id));
+
+			const btnCheckedThisTodoItem = todoList.querySelector(`input[data-idChecked="${el.id}"]`);
+
+			// btnCheckedThisTodoItem.addEventListener('click', completeTodo(el.isDone));
+			btnCheckedThisTodoItem.addEventListener('click', () => {
+				el.isDone = !el.isDone;
+
+				//! пока не сделала сохранение через LocalStorage
+				//изменение оформления для выполненных todos
+				const todoItem = document.querySelector(`#todoItem-${el.id}`);
+				const titleOfTodoItem = document.querySelector(`#todoLabel-${el.id}`);
+
+				if (el.isDone == true) {
+					todoItem.style.backgroundColor = 'rgb(255, 228, 165)';
+					titleOfTodoItem.style.textDecoration = 'line-through';
+				} else {
+					todoItem.style.backgroundColor = 'rgb(255, 213, 116)';
+					titleOfTodoItem.style.textDecoration = 'none';
+				}
+
+				setTodoInLocalStorage();
+				displayAllTodos();
+				displayCompletedTodos();
+			});
 		});
 	};
 };
-
-//! пока не работает
-for (let i = 0; i < todos.length; i++) {
-	// const btnDeleteThisTodoItem = todoList.children
-	// const btnDeleteThisTodoItem = document.querySelector(`button[data-delete-id="${i}"]`);
-	btnDeleteThisTodoItem.addEventListener('click', removeTodo(i));
-};
-//!
 
 //отображение только выполненных todos
 showCompleted.addEventListener('click', () => {
@@ -173,48 +197,3 @@ if (!todos.length && getToDosFromLocalStorage) {
 	displayAllTodos();
 	displayCompletedTodos();
 };
-
-//! раюотает только при обновлении страницы вручную
-//изменение выполненного todo   
-for (let i = 0; i < todos.length; i++) {
-	if (todos[i].isDone) {
-		let todoItem = todoList.children[i];
-		todoItem.style.backgroundColor = 'rgb(255, 228, 165)';
-		let titleOfTodoItem = todoItem.children[1];
-		titleOfTodoItem.style.textDecoration = 'line-through';
-	};
-};
-
-
-// todos.forEach(() => {
-
-// 	todoList.querySelector(`input[data-checkbox-id]`)
-// 	.addEventListener('click', function(event) {
-// 		event.target.classList.toggle('checked');
-// 		if (event.target.classList.contains('checked')) {
-// 			todos.isDone = true;
-// 		};
-// 	})
-// })
-
-const checkboxesInTodos = document.querySelectorAll('.form-check-input');
-const todoItem = document.querySelectorAll('.list-group-item');
-
-checkboxesInTodos.forEach(change);
-
-function change(e) {
-	e.addEventListener('click', (event) => {
-		event.target.classList.toggle('checked');
-		if (event.target.classList.contains('checked')) {
-			// todoItem.style.color = 'red';
-			// todos.isDone = true;
-
-			// todoList.addEventListener('click', function(event) {
-			// 	if(event.children('.list-group-item')) {
-			// 		event.target.style.opacity = '0.2'
-			// 	}
-			// })
-		};
-	});
-};
-//!
