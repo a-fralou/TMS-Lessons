@@ -23,6 +23,21 @@ function deleteLastTodoInList() {
 
 btnDeleteLastItem.addEventListener('click', deleteLastTodoInList);
 
+
+
+
+// function deleteLastTodoInList(todos) {
+// 	todos.pop();
+// 	setTodoInLocalStorage();
+// 	createTodo(todos);
+// }
+
+
+
+// btnDeleteLastItem.addEventListener('click', () => {
+// 	deleteLastTodoInList(todos)
+// });
+
 //удаляюстя все todos 
 function deleteAllTodos() {
 	todos = [];
@@ -177,13 +192,13 @@ const createTodoItem = (arr) => {
 			const btnCheckedThisTodoItem = todoList.querySelector(`input[data-idChecked="${el.id}"]`);
 			const todoItem = todoList.querySelector(`#todoItem-${el.id}`);
 			const titleOfTodoItem = todoList.querySelector(`#todoLabel-${el.id}`);
-			list = todoItem.children
+			list = todoList.children
 
 			//удаление todo-элемента, при нажатии на кнопку удаления внутри todo-элемента
 			btnDeleteThisTodoItem.addEventListener('click', () => removeTodo(el.id));
 
 			//изменение todo-элемента, при нажатии на кнопку состояния внутри todo-элемента
-			btnCheckedThisTodoItem.addEventListener('change', () => completeTodo(el.isDone));
+			btnCheckedThisTodoItem.addEventListener('change', () => completeTodo(el.id));
 
 			//изменение стилей в зависимости от состояния 
 			if (el.isDone) {
@@ -202,11 +217,11 @@ const createTodoItem = (arr) => {
 				if (value != '') {
 
 					for (let i = 0; i < list.length; i++) {
-
-						if (list[i].innerTEXT.search(value)) {
-							list[i].slyle.display = 'block';
+					
+						if (list[i].innerText.includes(value) == false) {
+							list[i].classList.add('hide');
 						} else {
-							list[i].slyle.display = 'none';
+							list[i].classList.remove('hide');
 						};
 						
 					}
@@ -216,6 +231,13 @@ const createTodoItem = (arr) => {
 		});
 	};
 };
+
+// 			inputSearch.addEventListener('input', function() {
+// 				let value = this.value.trim();
+// 				todos = todos.filter...
+// createTodo()
+// 				console.log(value)
+// 			});
 
 // LOCAL STORAGE
 
