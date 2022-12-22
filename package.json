@@ -18,6 +18,12 @@
   },
   "homepage": "https://github.com/a-fralou/TMS-Lessons#readme",
   "dependencies": {
-    "parcel": "^2.8.0"
+    "moment": "^2.29.4",
+    "parcel": "^2.8.0",
+    "uuidv4": "^6.2.13"
+  },
+  "devDependencies": {
+    "process": "^0.11.10",
+    "util": "^0.12.5"
   }
 }

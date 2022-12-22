@@ -1,3 +1,4 @@
+import moment from "moment";
 import { v4 as uuidv4 } from "uuid";
 const getRandomId = () => uuidv4();
 
@@ -14,20 +15,28 @@ let todo = document.getElementById('todo-list')
 let inputAdd = document.getElementById('input-add');
 
 let getCheckAll = document.getElementById('check-all')
-let getCompleted = document.querySelector('check-complted')
+let getCompleted = document.getElementById('check-completed')
+
+let inputSearch = document.getElementById('input-search')
 
 
 
 let todoList = [];                                       //Записываем каждый новый ввод todo
 let tempTodos = [];
+let filterTodos = []
 
 let checkAll = 0;
-let completed = 0;
+let completedAll = 0;
+
+
+let isShowCompleted = false;
 
 if(localStorage.getItem('todoList')){
   todoList = JSON.parse(localStorage.getItem('todoList'));
-  displayMessages()
+  displayMessages(todoList)
 }
+
+
 
 btnAdd.addEventListener('click', function(){
   if (inputAdd.value.trim() === ''){
@@ -35,19 +44,54 @@ btnAdd.addEventListener('click', function(){
     inputAdd.value ='';
     return
   }
+  const dateTodo = moment().format("h:mm, DD MMM"); // Mon Dec 05 2022
+
     let newTodo={                                     //Содержит данные нашего последнего ввода todo
-        todo:inputAdd.value,
+        title:inputAdd.value,
         id:getRandomId(),
         checked:false,
-        date:'Mon Dec 05 2022,'
+        date:dateTodo
 
     };
     inputAdd.value='';                           //После ввода стирается из input
     todoList.push(newTodo);
-
+    
     localStorage.setItem('todoList', JSON.stringify(todoList))        //Сохранение после обновления
-    displayMessages ()
+    if(isShowCompleted){
+      displayMessages(tempTodos)
+    } else {
+      displayMessages(todoList)
+    }
+ 
 })
+
+inputAdd.addEventListener("keyup", function(event){
+  if (event.key === 'Enter'){
+    if (inputAdd.value.trim() === ''){
+      alert('Поле не может быть пустым!')
+      inputAdd.value ='';
+      return
+    }
+    const dateTodo = moment().format("h:mm, DD MMM"); // Mon Dec 05 2022
+  
+      let newTodo={                                     //Содержит данные нашего последнего ввода todo
+          title:inputAdd.value,
+          id:getRandomId(),
+          checked:false,
+          date:dateTodo
+  
+      };
+      inputAdd.value='';                           //После ввода стирается из input
+      todoList.push(newTodo);
+      
+      localStorage.setItem('todoList', JSON.stringify(todoList))        //Сохранение после обновления
+      displayMessages(todoList)
+  }
+})
+
+
+
+//Удаление всех элементов
 
 btnDeleteAll.addEventListener('click', function(){
   todoList = [];
@@ -57,40 +101,114 @@ btnDeleteAll.addEventListener('click', function(){
   
 })
 
+//Удаление последнего элемента
+
 btnDeleteLast.addEventListener('click', function(){
-    let tempTodos = [...todoList];
-    const removeItem = tempTodos.pop();
-    console.log(removeItem.id);
-    todoList = todoList.filter((el) => el.id !== removeItem.id);
-    localStorage.setItem('todoList', JSON.stringify(todoList)) 
-    displayMessages(todoList);
-    
-    return;
+  let tempTodos = [...todoList];
+  const removeItem = tempTodos.pop();
+  console.log(removeItem.id);
+  todoList = todoList.filter((el) => el.id !== removeItem.id);
+  localStorage.setItem('todoList', JSON.stringify(todoList)) 
+  displayMessages(todoList);
+  
+  return;
 })
 
 
-const removeTodo = (id) =>{
-  todoList = todoList.filter((el) => el.id !==id)
+// Удаление элеменов при нажатии ан кнопку внутри инпута
 
+const removeTodo = (id) =>{
+  todoList = todoList.filter((el) => el.id !== id)
+  console.log(todoList)
   localStorage.setItem('todoList', JSON.stringify(todoList)) 
   displayMessages (todoList)
 }
 
+// Checkbox в input 
+const changeTodo = (id) =>{
+  todoList = todoList.map((el)=>{
+    if(el.id === id){
+      return {
+        ...el,
+        checked: !el.checked,
+      }
+    }
+    return el
+  })
+  localStorage.setItem('todoList', JSON.stringify(todoList)) 
+  
+  if(isShowCompleted){
+    displayMessages(todoList.filter((el) => el.checked))
+  } else {
+    displayMessages(todoList)
+  }
+}
 
 
-function displayMessages (){
-  console.log(todoList)
+//ПОИСК ЭЛЕМЕНТОВ ИЗ TODO LIST
+
+inputSearch.addEventListener("input", (e) => {
+  if (isShowCompleted) {
+    filterTodos = tempTodos.filter((el) =>
+      el.title.toLowerCase().includes(e.target.value.toLowerCase())
+    );
+    if (e.target.value === "") {
+      filterTodos = tempTodos;
+    }
+  } else {
+    filterTodos = todoList.filter((el) =>
+      el.title.toLowerCase().includes(e.target.value.toLowerCase())
+    );
+    if (e.target.value === "") {
+      filterTodos = todoList;
+    }
+  }
+
+  displayMessages(filterTodos);
+});
+
+//Показ всех отмеченных (CHECKED) (Show COMPLETED) элементов todo листа
+const showCompleted = () => {
+  isShowCompleted = true;
+  displayMessages (tempTodos)
+}
+btnShowCompleted.addEventListener('click', showCompleted)
+
+
+//Показ ВСЕХ (Show ALL) элементов todo листа
+
+const showAll = () =>{
+  isShowCompleted = false;
+  displayMessages(todoList)
+}
+btnShowAll.addEventListener('click', showAll)
+
+
+
+// Создание инпутов с label
+function displayMessages (data){
+  tempTodos = [...todoList].filter((el) => el.checked);
+
+          // Счетчик всех инпутов в todo листе
+          checkAll = todoList.length;
+          getCheckAll.innerText = checkAll; 
+      
+          // Счетчик всех ОТМЕЧЕННЫХ (checked) инпутов в todo листе
+          completedAll = tempTodos.length;
+          getCompleted.innerText = completedAll;
+
     todo.innerHTML = '';
     let displayMessage ='' ;
     
-    todoList.forEach(function(item, id){
-        displayMessage += `
+    
+    data.forEach(function({title, id, checked, date}){
+        displayMessage = `
         <li
         class="list-group-item d-flex justify-content-between align-items-center"
       >
         <div class="item-todo">
-          <input type="checkbox" id="${id}" ${item.checked ? 'checked': ''}>
-          <label for="${id}">${item.todo}</label
+          <input type="checkbox" id="${id}" ${checked && 'checked="true"'}>
+          <label for="${id}">${title}</label
           >
         </div>
 
@@ -108,39 +226,23 @@ function displayMessages (){
               />
             </svg>
           </button>
-          <span class="badge bg-secondary">Mon Dec 05 2022</span>
+          <span class="badge bg-secondary">${date}</span>
         </div>
       </li>
         `;
-        todo.innerHTML = displayMessage;
+
+        todo.insertAdjacentHTML("afterbegin", displayMessage);
+
         todo
           .querySelector(`button[data-id="${id}"]`)
-          .addEventListener("click", ()=> {removeTodo(item.id)})       //-удаление элемента при нажатии на иконку внутри input
-
-          .querySelector(`input[for="${id}"]`)
-          .addEventListener("click", ()=> {                             //- check элемента рпи нажатии на checkbox и занесение его в localStorage
-          item.checked = !item.checked
-          })
-
-          localStorage.setItem('todoList', JSON.stringify(todoList))  
+          .addEventListener("click", () => removeTodo(id));   
+        todo
+          .querySelector(`input[id="${id}"]`)
+          .addEventListener("change", () => changeTodo(id))
     })
 
-    checkAll = todoList.length;
-    getCheckAll.innerText = checkAll; 
+
 }
 
 
-// todo.addEventListener('change', function(event){                     //при изменении чего-то внутри запускается функция
-//   let idInput = event.target.getAttribute('id');                    //элеммент который вызвал событие (когда мы поставили галочку) - берем артибут
-//   let forLabel = todo.querySelector('[for='+ idInput +']');          //ищем селектор с помощью атрибута id
-//   let valueLabel = forLabel.innerHTML; 
-//   console.log(valueLabel)                              //выводим значение label value
 
-   
-//   todoList.forEach(function(item){
-//     if(item.todo === valueLabel){
-//       item.checked = !item.checked;
-//       localStorage.setItem('todoList', JSON.stringify(todoList))  
-//     }
-//   })
-// })
