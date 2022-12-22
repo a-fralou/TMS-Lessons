@@ -1,5 +1,6 @@
 'use strict'
 
+import moment from "moment";
 import {btnAdd, inputAdd, todoList, btnDeleteAll, btnDeleteLastItem, getUiCompletedTodos, getUiAllTodos, showAll, showCompleted, inputSearch} from './elements_in_DOM';
 import {KEY_FOR_TODOS, KEY_FOR_COMPLETED_TODOS} from './constants';
 
@@ -60,7 +61,7 @@ function addTodoItem() {
 	}
 
 	// создание даты
-	let todoDate = new Date().toLocaleString();
+	let todoDate = moment().format("LT DD MMM");
 
 	//создание уникального id
 	let uniqueId = new Date().valueOf();
