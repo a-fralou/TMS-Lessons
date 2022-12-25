@@ -2,11 +2,12 @@
 
 import moment from "moment";
 import {btnAdd, inputAdd, todoList, btnDeleteAll, btnDeleteLastItem, getUiCompletedTodos, getUiAllTodos, showAll, showCompleted, inputSearch} from './elements_in_DOM';
-import {KEY_FOR_TODOS, KEY_FOR_COMPLETED_TODOS} from './constants';
+import {KEY_FOR_TODOS, KEY_FOR_COMPLETED_TODOS, KEY_FOR_SEARCH} from './constants';
 
 //создание массивов, которые получают данные о todo
 let todos = [];
 let todosIsDone = [];
+let todoSearch = [];
 
 //создание начального значения количества todos, для последующего отображения на странице
 let allTodos = 0;
@@ -118,8 +119,8 @@ const displayCompletedTodos = () => {
 //отображение только выполненных todos
 showCompleted.addEventListener('click', () => {
 	todosIsDone = [...todos].filter(el => el.isDone);
-	localStorage.setItem(KEY_FOR_COMPLETED_TODOS, JSON.stringify(todos));
-	todos = JSON.parse(localStorage.getItem(KEY_FOR_COMPLETED_TODOS));
+	localStorage.setItem(KEY_FOR_COMPLETED_TODOS, JSON.stringify(todosIsDone));
+	todosIsDone = JSON.parse(localStorage.getItem(KEY_FOR_COMPLETED_TODOS));
 	createTodo(todosIsDone);
 });
 
@@ -157,6 +158,20 @@ const completeTodo = (id) => {
 	setTodoInLocalStorage();
 	createTodo(todos);
 };	
+
+//поиск 
+function searchTodo(e) {
+
+	if (e.value != '') {
+		todoSearch = [...todos].filter((el) => el.title.toLowerCase().includes(e.value.toLowerCase()));
+	} else {
+		todoSearch = [...todos];
+	};
+
+	localStorage.setItem(KEY_FOR_SEARCH, JSON.stringify(todoSearch));
+	todoSearch = JSON.parse(localStorage.getItem(KEY_FOR_SEARCH));
+	createTodo(todoSearch);
+};
 
 //работа с созданным todo-элементом
 const createTodoItem = (arr) => {
@@ -210,34 +225,10 @@ const createTodoItem = (arr) => {
 			};
 
 			//поиск
-			inputSearch.addEventListener('input', function() {
-				let value = this.value.trim();
-
-				console.log(value)
-				if (value != '') {
-
-					for (let i = 0; i < list.length; i++) {
-					
-						if (list[i].innerText.includes(value) == false) {
-							list[i].classList.add('hide');
-						} else {
-							list[i].classList.remove('hide');
-						};
-						
-					}
-				};
-			});
-
+			inputSearch.addEventListener('input', () => searchTodo(inputSearch) );
 		});
 	};
 };
-
-// 			inputSearch.addEventListener('input', function() {
-// 				let value = this.value.trim();
-// 				todos = todos.filter...
-// createTodo()
-// 				console.log(value)
-// 			});
 
 // LOCAL STORAGE
 
