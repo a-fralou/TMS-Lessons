@@ -24,16 +24,11 @@ function deleteLastTodoInList() {
 
 btnDeleteLastItem.addEventListener('click', deleteLastTodoInList);
 
-
-
-
 // function deleteLastTodoInList(todos) {
 // 	todos.pop();
 // 	setTodoInLocalStorage();
 // 	createTodo(todos);
 // }
-
-
 
 // btnDeleteLastItem.addEventListener('click', () => {
 // 	deleteLastTodoInList(todos)
@@ -176,8 +171,6 @@ function searchTodo(e) {
 //работа с созданным todo-элементом
 const createTodoItem = (arr) => {
 
-	let list 
-
 	if (arr.length != 0) {
 
 		arr.forEach(function (el) {
@@ -207,7 +200,6 @@ const createTodoItem = (arr) => {
 			const btnCheckedThisTodoItem = todoList.querySelector(`input[data-idChecked="${el.id}"]`);
 			const todoItem = todoList.querySelector(`#todoItem-${el.id}`);
 			const titleOfTodoItem = todoList.querySelector(`#todoLabel-${el.id}`);
-			list = todoList.children
 
 			//удаление todo-элемента, при нажатии на кнопку удаления внутри todo-элемента
 			btnDeleteThisTodoItem.addEventListener('click', () => removeTodo(el.id));
