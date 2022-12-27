@@ -1,0 +1,19 @@
+.btn-fluid {
+    width: 100%;
+}
+
+.container {
+    max-width: 1024px;
+}
+
+.form-check-label::after {
+    display: none !important;
+}
+
+.btn-delete {
+    height: 50px;
+    background-position: center;
+    background-size: auto;
+    background-repeat: no-repeat;
+    background-image: url("../images/svg.svg");
+}
